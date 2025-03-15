@@ -1,0 +1,94 @@
+{
+    "xray": {
+        "tag": "xray-script-xtls-reality",
+        "email": "vless@xtls.reality",
+        "listen": "\/dev\/shm\/nginx\/raw.sock",
+        "id": "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx",
+        "serverNames": [
+            "example.com"
+        ],
+        "shortIds": [
+            "",
+            "01",
+            "0123",
+            "01234567",
+            "0123456789abcdef"
+        ]
+    },
+    "nginx": {
+        "brotli": "1",
+        "http": "80",
+        "https": "443"
+    },
+    "domain": {
+        "type": "1",
+        "name": "example.com"
+    },
+    "policy": {
+        "levels": {
+            "0": {
+                "handshake": "2",
+                "connIdle": "128"
+            }
+        }
+    },
+    "dns": {
+        "servers": [
+            "https+local:\/\/cloudflare-dns.com\/dns-query",
+            "1.1.1.1",
+            "1.0.0.1",
+            "8.8.8.8",
+            "8.8.4.4",
+            "localhost"
+        ]
+    },
+    "routing": {
+        "domainStrategy": "IPIfNonMatch",
+        "rules": [
+            {
+                "type": "field"
+            },
+            {
+                "type": "field",
+                "protocol": [
+                    "bittorrent"
+                ]
+            },
+            {
+                "type": "field",
+                "ip": [
+                    "geoip:private"
+                ],
+                "outboundTag": "block"
+            },
+            {
+                "type": "field",
+                "domain": [
+                    "geosite:category-ads-all"
+                ],
+                "outboundTag": "block"
+            },
+            {
+                "type": "field",
+                "ip": [
+                    "geoip:cn"
+                ],
+                "outboundTag": "cloudflare-warp"
+            }
+        ]
+    },
+    "outbounds": {
+        "2": {
+            "tag": "cloudflare-warp",
+            "protocol": "socks",
+            "settings": {
+                "servers": [
+                    {
+                        "address": "172.17.0.2",
+                        "port": "40001"
+                    }
+                ]
+            }
+        }
+    }
+}

@@ -1,0 +1,20 @@
+{
+    "inbounds": {
+        "1": {
+            "settings": {
+                "fallbacks": [
+                    {
+                        "xver": "1"
+                    }
+                ]
+            }
+        },
+        "2": {
+            "streamSettings": {
+                "sockopt": {
+                    "acceptProxyProtocol": "1"
+                }
+            }
+        }
+    }
+}

@@ -1,0 +1,13 @@
+{
+    "inbounds": {
+        "1": {
+            "settings": {
+                "clients": [
+                    {
+                        "password": "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx"
+                    }
+                ]
+            }
+        }
+    }
+}

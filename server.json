@@ -1,0 +1,16 @@
+{
+    "routing": {
+        "rules": {
+            "3": {
+                "ip": [
+                    "geoip:cn"
+                ]
+            },
+            "4": {
+                "domain": [
+                    "geosite:category-ads-all"
+                ]
+            }
+        }
+    }
+}

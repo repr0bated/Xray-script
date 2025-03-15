@@ -1,0 +1,156 @@
+{
+    "log": {
+        "loglevel": "warning",
+        "error": "\/var\/log\/xray\/error.log",
+        "access": "\/var\/log\/xray\/access.log"
+    },
+    "api": {
+        "tag": "api",
+        "services": [
+            "HandlerService",
+            "LoggerService",
+            "StatsService"
+        ]
+    },
+    "stats": {
+        "one": "",
+        "other": ""
+    },
+    "policy": {
+        "levels": {
+            "0": {
+                "statsUserUplink": "1",
+                "statsUserDownlink": "1"
+            }
+        },
+        "system": {
+            "statsInboundUplink": "1",
+            "statsInboundDownlink": "1",
+            "statsOutboundUplink": "1",
+            "statsOutboundDownlink": "1"
+        }
+    },
+    "routing": {
+        "rules": [
+            {
+                "ruleTag": "api",
+                "inboundTag": [
+                    "api"
+                ],
+                "outboundTag": "api"
+            },
+            {
+                "ruleTag": "private-ip",
+                "ip": [
+                    "geoip:private"
+                ],
+                "outboundTag": "block"
+            }
+        ]
+    },
+    "inbounds": [
+        {
+            "tag": "api",
+            "listen": "127.0.0.1",
+            "port": "32768",
+            "protocol": "dokodemo-door",
+            "settings": {
+                "address": "127.0.0.1"
+            },
+            "sniffing": ""
+        },
+        {
+            "tag": "VLESS-Vision-REALITY",
+            "listen": "\/dev\/shm\/nginx\/vision_reality.sock,0666",
+            "protocol": "vless",
+            "settings": {
+                "clients": [
+                    {
+                        "email": "vless@xtls.reality",
+                        "id": "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx",
+                        "flow": "xtls-rprx-vision",
+                        "level": "0"
+                    }
+                ],
+                "decryption": "none",
+                "fallbacks": [
+                    {
+                        "dest": "\/dev\/shm\/nginx\/xhttp_reality.sock"
+                    }
+                ]
+            },
+            "streamSettings": {
+                "network": "raw",
+                "security": "reality",
+                "realitySettings": {
+                    "show": "0",
+                    "dest": "\/dev\/shm\/nginx\/cloudreve.sock",
+                    "xver": "1",
+                    "serverNames": [
+                        "example.com"
+                    ],
+                    "privateKey": "xray x25519 Private key",
+                    "shortIds": [
+                        "",
+                        "01",
+                        "0123",
+                        "01234567",
+                        "0123456789abcdef"
+                    ]
+                },
+                "rawSettings": {
+                    "acceptProxyProtocol": "1"
+                }
+            },
+            "sniffing": {
+                "enabled": "1",
+                "destOverride": [
+                    "http",
+                    "tls",
+                    "quic"
+                ]
+            }
+        },
+        {
+            "tag": "VLESS-XHTTP-REALITY",
+            "listen": "\/dev\/shm\/nginx\/xhttp_reality.sock,0666",
+            "protocol": "vless",
+            "settings": {
+                "clients": [
+                    {
+                        "email": "vless@xhttp.reality",
+                        "id": "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx",
+                        "level": "0"
+                    }
+                ],
+                "decryption": "none"
+            },
+            "streamSettings": {
+                "network": "xhttp",
+                "xhttpSettings": {
+                    "host": "",
+                    "path": "\/yourpath",
+                    "mode": "auto"
+                }
+            },
+            "sniffing": {
+                "enabled": "1",
+                "destOverride": [
+                    "http",
+                    "tls",
+                    "quic"
+                ]
+            }
+        }
+    ],
+    "outbounds": [
+        {
+            "tag": "direct",
+            "protocol": "freedom"
+        },
+        {
+            "tag": "block",
+            "protocol": "blackhole"
+        }
+    ]
+}

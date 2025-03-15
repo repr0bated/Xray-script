@@ -1,0 +1,31 @@
+{
+    "inbounds": {
+        "1": {
+            "port": "9527",
+            "streamSettings": {
+                "kcpSettings": {
+                    "uplinkCapacity": "100",
+                    "downlinkCapacity": "100",
+                    "congestion": "1",
+                    "readBufferSize": "5",
+                    "writeBufferSize": "5",
+                    "seed": "{{ speed }}"
+                }
+            }
+        }
+    },
+    "outbounds": [
+        {
+            "settings": {
+                "one": "",
+                "other": ""
+            }
+        },
+        {
+            "settings": {
+                "one": "",
+                "other": ""
+            }
+        }
+    ]
+}

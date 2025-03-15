@@ -1,0 +1,20 @@
+{
+    "inbounds": {
+        "1": {
+            "streamSettings": {
+                "realitySettings": {
+                    "target": "",
+                    "serverNames": {
+                        "one": "",
+                        "other": ""
+                    }
+                },
+                "xhttpSettings": {
+                    "host": "",
+                    "path": "\/yourpath",
+                    "mode": "auto"
+                }
+            }
+        }
+    }
+}

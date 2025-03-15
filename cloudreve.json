@@ -1,0 +1,6 @@
+{
+    "Mode": "master",
+    "Debug": "false",
+    "Listen": "\/dev\/shm\/cloudreve\/cloudreve.sock",
+    "Perm": "0666"
+}
